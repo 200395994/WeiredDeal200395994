@@ -1,0 +1,51 @@
+{
+	"Head": "",
+	"secondHead": "",
+	"active": true,
+	"greatDeals": [
+        {
+        	"price":129.99 ,
+            "name": "",
+			
+			"description": "",
+			"features": [
+				"",
+				"Amazing things you can buy",
+				"",
+				"You are going to love it"
+			],
+			"image": ""
+        },
+           {
+
+           	"price": 16.99,
+            "name": "",
+			
+			"description": " .",
+			"features": [
+				"",
+				"Amazing things you can buy",
+				"",
+				"You are going to love it"
+			],
+			"image": ""
+        },
+           {
+           	"price":300.00 ,
+            "name": "",
+			
+			"description": "",
+			"features": [
+				"",
+				"buy good ",
+				"Stuff"
+				
+			],
+			"image": ""
+        }
+	]
+}
+
+
+
+

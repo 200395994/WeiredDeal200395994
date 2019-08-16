@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Some Amazing Weird Deals here</title>
+	
+
+	<style type="text/css">
+		#map {
+        height: 350px; 
+        width: 150%; 
+       }
+
+       h3 {
+       	text-align: right;
+       	color: #42f5c5;
+       	font-size: 60px;
+       }
+	</style>
+</head>
+<body>
+
+<header>
+	
+</header>
+
+
+<section>
+	
+
+</section>
+
+<h3>You will find here everything</h3>
+<div id="map"></div>
+
+<script type="text/javascript">
+	
+
+var header = document.querySelector('header');
+var section = document.querySelector('section');
+
+
+// request URL for JSON
+
+var requestURL = 'https://raw.githubusercontent.com/200395994/WeirdDealsWeb/master/product.json';
+                  
+// NEW OBJECTS
+var request = new XMLHttpRequest();
+
+// CREATING A REQUEST URL
+
+request.open('GET', requestURL);
+
+// HERE IS LINK BETWEEN CONNECTING JAVASCRIPT TO JSON FROM SERVER
+
+request.responseType = 'json';
+
+
+// Sending request to server by send() method
+request.send();
+
+
+// onload event to load page 
+
+request.onload = function() {
+
+	// declare variable for header
+	var weiredDeal = request.response;
+
+	// console for weiredDeal
+	console.log(weiredDeal);
+
+	//Main Header
+	mainHeader(weiredDeal);
+
+	//Top weired Deals
+	topDeals(weiredDeal);
+}
+
+
+// Function for mainHeader
+
+function mainHeader(jsonObj){
+
+	// Set the main Header
+	var setHeader = document.createElement('h1');
+	// Grab the main header 
+	setHeader.textContent = jsonObj['Head'];
+	// Set this header in header tag
+	header.appendChild(setHeader);
+
+
+	// Set the second Header
+    var secondHeader = document.createElement('h2');
+    //Grab the second header
+    secondHeader.textContent = jsonObj['secondHead'];
+    //Set this header in header tag
+    header.appendChild(secondHeader);
+}
+
+
+// Another function for top deals
+
+function topDeals(jsonObj){
+
+	//Declaration of top deals variable
+
+	var dealsOfDay = jsonObj['topDeals'];
+
+	//for loop to topdeals object
+
+	for (var i = 0; i < dealsOfDay.length; i++){
+
+		// Declaration of varibles to set all tags
+
+		var article = document.createElement('article');
+		var h2 = document.createElement('h2');
+		var img = document.createElement('img');
+		var p1 = document.createElement('p');
+		var p2 = document.createElement('p');
+		var list = document.createElement('ul');
+
+
+
+		// Set all property for each element based on JSON
+
+		img.setAttribute('src', 'https://raw.githubusercontent.com/200395994/WeirdDealsWeb/master/WeirdDealsWeb/image/' + dealsOfDay[i].image);
+		img.setAttribute('alt', dealsOfDay[i].name);
+
+		h2.textContent = dealsOfDay[i].name;
+		p1.textContent = 'Price: ' + dealsOfDay[i].price;
+
+		p2.textContent = 'Description: ' + dealsOfDay[i].description;
+
+
+		// Declaration of variable for features
+		var fectures = dealsOfDay[i].fectures;
+
+
+
+		//For loop for list item 
+		for (var j = 0; j < fectures.length; j++){
+
+		var productItem = document.createElement('li');
+
+		productItem.textContent = fectures[j];
+		list.appendChild(productItem);
+		}
+
+
+		article.appendChild(img);
+		article.appendChild(h2);
+		article.appendChild(p1);
+		article.appendChild(p2);
+		article.appendChild(list);
+		section.appendChild(article);
+	}
+}
+
+
+// For Map JavaScript
+
+function initMap(){
+
+
+	var newmap = {lat: 44.365500, lng: -79.701087};
+
+	var map = new google.maps.Map(
+		document.getElementById('map'), {zoom: 12, center: newmap});
+
+	var marker = new google.maps.Marker({position: newmap, map: map});
+}
+
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtlCtBbTjJRSDmaG0xirm8PgpAqNzY-VQ&callback=initMap"
+  type="text/javascript"></script>
+
+
+
+
+</body>
+
+</html>
